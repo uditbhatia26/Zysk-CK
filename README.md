@@ -1,6 +1,6 @@
 # Zysk
 
-Zysk is a fintech web platform developed for hackCBS, aimed at providing personalized financial insights and investment guidance. Through a structured questionnaire, Zysk assesses a user's financial mindset, generating customized reports and real-time investment suggestions. The platform leverages AI and real-time data integration to offer a modern financial advisory experience.
+Zysk is a fintech web platform developed for CodeKshetra, aimed at providing personalized financial insights and investment guidance. Through a structured questionnaire, Zysk assesses a user's financial mindset, generating customized reports and real-time investment suggestions. The platform leverages AI and real-time data integration to offer a modern financial advisory experience.
 
 ## Overview
 
@@ -17,12 +17,15 @@ Zysk simplifies financial decision-making by assessing users' financial mindsets
 ## Tech Stack
 
 - **Frontend**:
+
   - HTML5, CSS3, JavaScript
 
 - **Backend**:
+
   - Python (Flask): For the AI model and backend processes
 
 - **AI Model**:
+
   - Generative AI (Gemini) trained to analyze user responses and generate financial insights
   - Model tuning using libraries like `Transformers` and `scikit-learn`
 
@@ -38,4 +41,3 @@ Zysk's architecture follows a microservices approach, with clear separation betw
 2. **Backend (Flask)**: Manages API requests, handles user data, and triggers AI processes.
 3. **AI Service (Python)**: Processes user data and generates financial insights using an Gemini.
 4. **Notification Services**: Uses UltraMsg for WhatsApp and SMTP for emails.
-
