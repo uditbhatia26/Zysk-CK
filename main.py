@@ -16,7 +16,7 @@ responses = []
 
 os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY")
 groq_api_key = os.getenv("GROQ_API_KEY")
-
+          
 with open("config.md", "r", encoding="utf-8") as file:
     config_data = file.read()
 
@@ -38,16 +38,15 @@ Example Output:
 llm = ChatGroq(
     model='llama-3.3-70b-versatile',
     api_key=groq_api_key,
-    max_tokens=9000,
+    max_tokens=8092,
     )
 
 chain = prompt | llm 
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        return redirect(url_for('index'))  # Redirect back to the homepage
+        return redirect(url_for('index'))
     return render_template('index.html')
 
 @app.route('/quiz')
@@ -58,10 +57,8 @@ def quiz():
 def submit():
     responses = request.form.getlist('responses')
     generated_response = chain.invoke({"user_options": responses, "example_output": example_output})
-    
     generated_text = generated_response.content if hasattr(generated_response, "content") else str(generated_response)
-
-    markdown_response = markdown.markdown(generated_text)  # Convert to Markdown
+    markdown_response = markdown.markdown(generated_text) 
 
     return render_template('analysis.html', model_response=markdown_response)
 
