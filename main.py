@@ -30,7 +30,7 @@ User Information: {user_options}
 
 Example Output:
 <output>
-{{example_output}}
+{example_output}
 </output>
 """)
 
@@ -42,16 +42,11 @@ llm = ChatGroq(
     )
 
 chain = prompt | llm 
-chain.invoke({"user_options": responses})
 
-def send_update():
-    return ''
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        # When the button is clicked, invoke the function
-        send_update()  # This will call the backend function
         return redirect(url_for('index'))  # Redirect back to the homepage
     return render_template('index.html')
 
@@ -61,11 +56,12 @@ def quiz():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    # Collect responses from form data
     responses = request.form.getlist('responses')
-    generated_response = chain.invoke({"user_options": responses})
-    # gpt_response = chat_session.send_message(user_profile)
-    markdown_response = markdown.markdown(generated_response.content)
+    generated_response = chain.invoke({"user_options": responses, "example_output": example_output})
+    
+    generated_text = generated_response.content if hasattr(generated_response, "content") else str(generated_response)
+
+    markdown_response = markdown.markdown(generated_text)  # Convert to Markdown
 
     return render_template('analysis.html', model_response=markdown_response)
 
