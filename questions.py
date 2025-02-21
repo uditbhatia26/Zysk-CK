@@ -20,19 +20,12 @@ questions = [
     },
     {
         'Question': 'What’s your monthly net income (after tax)?',
-        'Options': [
-            'Below ₹25,000',
-            '₹25,000 - ₹50,000',
-            '₹50,000 - ₹1,00,000',
-            'Above ₹1,00,000'
-        ]
     },
     {
         'Question': 'How would you describe your current financial situation?',
         'Options': [
             'Struggling to make ends meet',
             'Living paycheck to paycheck',
-            'Able to save some money each month',
             'Financially comfortable with room for investments'
         ]
     },
@@ -47,12 +40,6 @@ questions = [
     },
     {
         'Question': 'How much debt do you currently have (home loan, personal loan, credit cards, etc.)?',
-        'Options': [
-            '0',
-            'Under ₹2,00,000',
-            '₹2,00,000 - ₹10,00,000',
-            'Above ₹10,00,000'
-        ]
     },
     {
         'Question': 'Do you have an emergency fund?',
@@ -92,28 +79,6 @@ questions = [
     },
     {
         'Question': 'What percentage of your income are you willing to invest?',
-        'Options': [
-            '0-5%',
-            '5-10%',
-            '10-20%',
-            'More than 20%'
-        ]
-    },
-    {
-        'Question': 'How would you rate your knowledge of financial markets?',
-        'Options': [
-            'Beginner',
-            'Intermediate',
-            'Advanced',
-            'Expert'
-        ]
-    },
-    {
-        'Question': 'Do you currently work with a financial advisor?',
-        'Options': [
-            'Yes',
-            "No"
-        ]
     },
     {
         'Question': 'How do you feel about credit cards?',

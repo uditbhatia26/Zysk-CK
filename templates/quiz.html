@@ -42,7 +42,7 @@
             font-weight: 700;
         }
 
-        /* Question and Dropdown Styling */
+        /* Question Styling */
         .question {
             font-weight: 600;
             color: #555555;
@@ -51,13 +51,14 @@
             text-align: left;
         }
 
-        .dropdown-container {
+        /* Dropdown and Input Container */
+        .input-container {
             position: relative;
             width: 100%;
             margin-bottom: 20px;
         }
 
-        .dropdown {
+        .dropdown, .num-input {
             width: 100%;
             padding: 12px;
             border: 1px solid #dddddd;
@@ -71,13 +72,13 @@
             transition: border-color 0.3s, background-color 0.3s;
         }
 
-        .dropdown:hover {
+        .dropdown:hover, .num-input:hover {
             border-color: #999999;
             background-color: #f0f0f0;
         }
 
         /* Dropdown Arrow */
-        .dropdown-container::after {
+        .input-container::after {
             content: '▼';
             font-size: 0.8em;
             color: #888888;
@@ -134,18 +135,27 @@
     <div class="container">
         <h1>Financial Questionnaire</h1>
         
-        <!-- Form sends data to Flask directly via POST request -->
         <form action="/submit" method="POST">
             {% for i in range(questions|length) %}
                 <div class="question">{{ i + 1 }}. {{ questions[i]['Question'] }}</div>
-                <div class="dropdown-container">
-                    <select name="responses" class="dropdown" required>
-                        <option value="" disabled selected>Select an option</option>
-                        {% for option in questions[i]['Options'] %}
-                            <option value="{{ option }}">{{ option }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                
+                {% if i == 2 or i == 5 or i == 10 %}
+                    <!-- Numerical Input for Questions 3, 6, and 11 -->
+                    <div class="input-container">
+                        <input type="number" name="responses" class="num-input" placeholder="Enter a number" required>
+                    </div>
+                {% else %}
+                    <!-- Dropdown for Other Questions -->
+                    <div class="input-container">
+                        <select name="responses" class="dropdown" required>
+                            <option value="" disabled selected>Select an option</option>
+                            {% for option in questions[i]['Options'] %}
+                                <option value="{{ option }}">{{ option }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+                
             {% endfor %}
             <button type="submit" class="submit-btn">Submit</button>
         </form>
